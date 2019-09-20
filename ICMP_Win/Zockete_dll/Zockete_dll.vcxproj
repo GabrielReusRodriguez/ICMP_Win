@@ -160,6 +160,9 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="ZocketeException.h" />
     <ClInclude Include="ZocketeLibrary.h" />
+    <ClInclude Include="Zockete_Client.h" />
+    <ClInclude Include="Zockete_Client_Raw.h" />
+    <ClInclude Include="Zockete_Servidor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
@@ -171,6 +174,9 @@
     </ClCompile>
     <ClCompile Include="ZocketeException.cpp" />
     <ClCompile Include="ZocketeLibrary.cpp" />
+    <ClCompile Include="Zockete_Client.cpp" />
+    <ClCompile Include="Zockete_Client_Raw.cpp" />
+    <ClCompile Include="Zockete_Servidor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

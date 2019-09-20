@@ -27,6 +27,15 @@
     <ClInclude Include="ZocketeException.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Zockete_Client.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Zockete_Servidor.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Zockete_Client_Raw.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -39,6 +48,15 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="ZocketeException.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Zockete_Client.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Zockete_Servidor.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Zockete_Client_Raw.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

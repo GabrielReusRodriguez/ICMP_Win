@@ -2,15 +2,15 @@
 //
 
 #include <iostream>
-#include "ZocketeLibrary.h"
+#include "Zockete_Client.h"
 
 int main(int argc, char* argv[])
 {
     std::cout << "Hello World!\n";
-	Zockete *mySocket = NULL;
+	Zockete_Client *mySocket = NULL;
 	try{
-		
-		mySocket->version();
+		mySocket = new Zockete_Client("host",10);
+		mySocket->about();
 	}
 	catch (ZocketeException& e) {
 		std::cout << "ERROR EXCEPCION" << std::endl;
