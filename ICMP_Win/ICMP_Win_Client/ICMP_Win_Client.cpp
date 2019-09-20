@@ -2,10 +2,14 @@
 //
 
 #include <iostream>
+#include "ZocketeLibrary.h"
 
 int main()
 {
     std::cout << "Hello World!\n";
+	Zockete mySocket;
+	mySocket.version();
+	std::cout << "Goodbye World!\n";
 }
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
