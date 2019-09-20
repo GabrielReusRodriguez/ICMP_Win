@@ -11,6 +11,8 @@
 //https://docs.microsoft.com/es-es/cpp/build/walkthrough-creating-and-using-a-dynamic-link-library-cpp?view=vs-2019
 
 #include<WinSock2.h>
+#include <string>
+#include "ZocketeException.h"
 
 #define ZOCKETE_VERSION "1.0"
 
@@ -18,8 +20,17 @@ class ZOCKETELIBRARY_API Zockete
 {
 protected: 
 	SOCKET sd;
+	std::string host;
+
+	//Metodos.
+	void closeSocket();
+	void createSocket();
+	void runSocket();
+
+
 public:
 	void version();
-	Zockete();
+	//Zockete() throw (ZocketeException);
+	Zockete(const std::string host) throw (ZocketeException);
 	~Zockete();
 };

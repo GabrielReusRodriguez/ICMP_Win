@@ -4,11 +4,18 @@
 #include <iostream>
 #include "ZocketeLibrary.h"
 
-int main()
+int main(int argc, char* argv[])
 {
     std::cout << "Hello World!\n";
-	Zockete mySocket;
-	mySocket.version();
+	Zockete *mySocket = NULL;
+	try{
+		
+		mySocket->version();
+	}
+	catch (ZocketeException& e) {
+		std::cout << "ERROR EXCEPCION" << std::endl;
+	}
+
 	std::cout << "Goodbye World!\n";
 }
 
