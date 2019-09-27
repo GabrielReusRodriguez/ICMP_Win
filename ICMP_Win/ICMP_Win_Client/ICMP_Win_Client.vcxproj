@@ -156,6 +156,11 @@
   <ItemGroup>
     <ClCompile Include="ICMP_Win_Client.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zockete_dll\Zockete_dll.vcxproj">
+      <Project>{573c2880-58ee-4e17-a788-cf7ed946f4e3}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

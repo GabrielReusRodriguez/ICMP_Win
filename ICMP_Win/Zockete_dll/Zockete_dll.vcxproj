@@ -158,11 +158,14 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Zockete.h" />
     <ClInclude Include="ZocketeException.h" />
     <ClInclude Include="ZocketeLibrary.h" />
-    <ClInclude Include="Zockete_Client.h" />
-    <ClInclude Include="Zockete_Client_Raw.h" />
-    <ClInclude Include="Zockete_Servidor.h" />
+    <ClInclude Include="Zockete_Inet_Client.h" />
+    <ClInclude Include="Zockete_Inet_Client_ICMP.h" />
+    <ClInclude Include="Zockete_Inet_Client_Raw.h" />
+    <ClInclude Include="Zockete_Inet.h" />
+    <ClInclude Include="Zockete_Inet_Servidor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
@@ -173,10 +176,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ZocketeException.cpp" />
-    <ClCompile Include="ZocketeLibrary.cpp" />
-    <ClCompile Include="Zockete_Client.cpp" />
-    <ClCompile Include="Zockete_Client_Raw.cpp" />
-    <ClCompile Include="Zockete_Servidor.cpp" />
+    <ClCompile Include="Zockete.cpp" />
+    <ClCompile Include="Zockete_Inet_Client.cpp" />
+    <ClCompile Include="Zockete_Inet_Client_ICMP.cpp" />
+    <ClCompile Include="Zockete_Inet_Client_Raw.cpp" />
+    <ClCompile Include="Zockete_Inet.cpp" />
+    <ClCompile Include="Zockete_Inet_Servidor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

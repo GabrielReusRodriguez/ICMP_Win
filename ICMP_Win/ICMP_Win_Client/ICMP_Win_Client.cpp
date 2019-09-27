@@ -2,14 +2,17 @@
 //
 
 #include <iostream>
-#include "Zockete_Client.h"
+//#include "../Zockete_dll/Zockete_Client.h"
+#include "Zockete_Inet_Client_ICMP.h"
 
 int main(int argc, char* argv[])
 {
     std::cout << "Hello World!\n";
-	Zockete_Client *mySocket = NULL;
+	Zockete_Inet_Client_ICMP *mySocket = NULL;
+	//Zockete_Client prueba("host",21);
+	
 	try{
-		mySocket = new Zockete_Client("host",10);
+		mySocket = new Zockete_Inet_Client_ICMP("host");
 		mySocket->about();
 	}
 	catch (ZocketeException& e) {

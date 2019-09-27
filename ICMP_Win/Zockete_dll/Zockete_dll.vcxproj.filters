@@ -27,13 +27,22 @@
     <ClInclude Include="ZocketeException.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Zockete_Client.h">
+    <ClInclude Include="Zockete.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Zockete_Servidor.h">
+    <ClInclude Include="Zockete_Inet.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Zockete_Client_Raw.h">
+    <ClInclude Include="Zockete_Inet_Client.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Zockete_Inet_Client_Raw.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Zockete_Inet_Servidor.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Zockete_Inet_Client_ICMP.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
@@ -44,19 +53,25 @@
     <ClCompile Include="pch.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="ZocketeLibrary.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="ZocketeException.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Zockete_Client.cpp">
+    <ClCompile Include="Zockete_Inet.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Zockete_Servidor.cpp">
+    <ClCompile Include="Zockete_Inet_Client.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Zockete_Client_Raw.cpp">
+    <ClCompile Include="Zockete_Inet_Client_Raw.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Zockete_Inet_Servidor.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Zockete.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Zockete_Inet_Client_ICMP.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
