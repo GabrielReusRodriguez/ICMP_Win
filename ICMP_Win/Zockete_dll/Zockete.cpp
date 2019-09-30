@@ -50,7 +50,7 @@ void Zockete::about() {
 
 struct addrinfo Zockete::createAddrInfo(int familia, int tipoSocket, int protocolo) {
 	struct addrinfo a;
-	//ZeroMemory(&a, sizeof(a));
+	ZeroMemory(&a, sizeof(a));
 	a.ai_family = familia;
 	a.ai_socktype = tipoSocket;
 	a.ai_protocol = protocolo;

@@ -1,5 +1,6 @@
 #pragma once
 
+#include<vector>
 #include "Zockete_Inet.h"
 
 #define ZOCKETE_INET_CLIENT_CLASS "ZOCKETE_INET_CLIENT"
@@ -30,7 +31,9 @@ public:
 protected:
 	
 	struct addrinfo direccionServidor;
+	std::vector<std::string> recvBuffer;
 	
+	void limpiaRecvBuffer();
 
 
 };

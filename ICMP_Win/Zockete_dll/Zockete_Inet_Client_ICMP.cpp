@@ -4,7 +4,7 @@
 
 
 Zockete_Inet_Client_ICMP::Zockete_Inet_Client_ICMP(const std::string host) : Zockete_Inet_Client(host) {
-
+	this->limpiaRecvBuffer();
 }
 
 Zockete_Inet_Client_ICMP::~Zockete_Inet_Client_ICMP() {
@@ -30,20 +30,32 @@ void Zockete_Inet_Client_ICMP::creaSocket() {
 	//struct addrinfo *resultadoServidor = NULL;
 	int connectedSocket = INVALID_SOCKET;
 
+	addrinfo a;
 	PADDRINFOA resultadoServidor = nullptr;
 	//PCSTR host = this->host.c_str();
 
-	queryServidor = createAddrInfo(AF_INET, SOCK_RAW, IPPROTO_ICMP);
+	ZeroMemory(&queryServidor, sizeof(queryServidor));
+	//memset(&(this->direccionServidor), 0, sizeof(this->direccionServidor));
+
+	//queryServidor = createAddrInfo(AF_UNSPEC, SOCK_RAW, IPPROTO_ICMP);
+	queryServidor = createAddrInfo(AF_UNSPEC, SOCK_RAW, IPPROTO_ICMP);
 	iResult = getaddrinfo(this->host.c_str(),nullptr,&queryServidor,&resultadoServidor);
+	//iResult = getaddrinfo("www.google.es", "80", &queryServidor, &resultadoServidor);
+	//iResult = getaddrinfo("www.google.es", "80", &queryServidor, &resultadoServidor);
+	//iResult = getaddrinfo("www.google.es", "80", &queryServidor, &resultadoServidor);
+	
 	//iResult = getaddrinfo(host, nullptr, &queryServidor, &resultadoServidor);
 	if (iResult != 0) {
 		//Error => retornamos.
+		WCHAR* mesg = gai_strerror(iResult);
 		return;
 	}
 
 
+	this->direccionServidor = *resultadoServidor;
 	//Probamos diferentes direcciones.
-	for (ptr = resultadoServidor; ptr != NULL; ptr = ptr->ai_next) {
+	//for (ptr = resultadoServidor; ptr != NULL; ptr = ptr->ai_next) {
+	for (ptr = &(this->direccionServidor); ptr != NULL; ptr = ptr->ai_next) {
 
 		connectedSocket = socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol);
 		if (connectedSocket == INVALID_SOCKET) {
@@ -80,5 +92,45 @@ void Zockete_Inet_Client_ICMP::envia(std::string sendBuffer) {
 }
 
 void Zockete_Inet_Client_ICMP::recibe() {
+
+	int recvbuflen = 1024;
+	char recvbuf[1024];
+	char* payload = NULL;
+	int iResult;
+
+	char* nullChar = NULL;
+
+	do {
+
+		nullChar = NULL;
+		iResult = recv(this->sd, recvbuf, recvbuflen, 0);
+		if (iResult > 0){
+			payload = new char[iResult+1];
+			strncpy_s(payload, iResult+1, recvbuf, iResult);
+			
+			nullChar = strchr(payload, '\0');
+			//nullChar = strchr(recvbuf, '\0');
+			this->recvBuffer.push_back(payload);
+			printf("Bytes received: %d payload: %s\n", iResult, payload);
+			delete payload;
+		}	
+		else if (iResult == 0)
+			printf("Connection closed\n");
+		else
+			printf("recv failed: %d\n", WSAGetLastError());
+	} while (iResult > 0 && nullChar == NULL);
+
+
+	/*
+	
+	const char* p = str;
+std::vector<std::string> vector;
+
+do {
+  vector.push_back(std::string(p));
+  p += vector.back().size() + 1;
+} while ( // whatever condition applies );
+
+	*/
 
 }
