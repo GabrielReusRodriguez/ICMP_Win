@@ -55,4 +55,5 @@ struct addrinfo Zockete::createAddrInfo(int familia, int tipoSocket, int protoco
 	a.ai_socktype = tipoSocket;
 	a.ai_protocol = protocolo;
 	return a;
+
 }
