@@ -1,7 +1,6 @@
 #include "pch.h"
 //#include "ZocketeLibrary.h"
 #include "Zockete.h"
-
 #include <iostream>
 
 void  Zockete::version() {
@@ -9,13 +8,20 @@ void  Zockete::version() {
 }
 
 Zockete::Zockete() throw (ZocketeException) {
-	this->initWinsock();
+	/*
+	if (!ZocketeLibrary::isInit()) {
+		ZocketeLibrary::initLibrary();
+	}
+	*/
+	
 }
 
 
 Zockete::~Zockete() {
 	this->cierraSocket();
-	this->closeWinsock();
+	/*
+	ZocketeLibrary::closeLibrary();
+	*/
 }
 
 void Zockete::cierraSocket() {
@@ -25,24 +31,29 @@ void Zockete::cierraSocket() {
 	}
 
 }
-
+/*
 void Zockete::initWinsock() throw (ZocketeException) {
 
 	//Inicializo el Winsock
-	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+	if (Zockete::winsockIniciado)
+		if ( WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
 		//Error al inicializar Winsock
+		Zockete::winsockIniciado = false;
 		throw ZocketeException(1, "Error inicializando WinSock");
 	}
+	Zockete::winsockIniciado = true;
 }
 
 void Zockete::closeWinsock() {
 
 	//Sólo limpio la librearía en caso que wsaData haya sido inicializada.
-	if (&(this->wsaData) != NULL) {
+	//if (&(this->wsaData) != NULL) {
+	if (Zockete::winsockIniciado  && &(Zockete::wsaData) != NULL) {
 		WSACleanup();
+		Zockete::winsockIniciado = false;
 	}
 }
-
+*/
 
 void Zockete::about() {
 	std::cout << "Zockete Library v " << ZOCKETE_LIB_VERSION << " Class " << ZOCKETE_CLASS  << std::endl;

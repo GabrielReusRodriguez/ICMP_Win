@@ -177,6 +177,7 @@
     </ClCompile>
     <ClCompile Include="ZocketeException.cpp" />
     <ClCompile Include="Zockete.cpp" />
+    <ClCompile Include="ZocketeLibrary.cpp" />
     <ClCompile Include="Zockete_Inet_Client.cpp" />
     <ClCompile Include="Zockete_Inet_Client_ICMP.cpp" />
     <ClCompile Include="Zockete_Inet_Client_Raw.cpp" />

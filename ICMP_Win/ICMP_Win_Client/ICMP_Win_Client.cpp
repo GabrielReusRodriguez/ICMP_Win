@@ -4,6 +4,7 @@
 #include <iostream>
 //#include "../Zockete_dll/Zockete_Client.h"
 #include "Zockete_Inet_Client_ICMP.h"
+#include "ZocketeLibrary.h"
 
 int main(int argc, char* argv[])
 {
@@ -36,6 +37,8 @@ int main(int argc, char* argv[])
 
 	std::cout << "Ping a " << host << "Con el payload: " << payload << std::endl;
 	try{
+		ZocketeLibrary::initLibrary();
+
 		mySocket = new Zockete_Inet_Client_ICMP(host);
 		mySocket->creaSocket();
 		mySocket->conecta();
@@ -44,6 +47,8 @@ int main(int argc, char* argv[])
 		mySocket->desconecta();
 		mySocket->cierraSocket();
 		mySocket->about();
+
+		ZocketeLibrary::closeLibrary();
 	}
 	catch (ZocketeException& e) {
 		std::cout << "ERROR EXCEPCION" << std::endl;
