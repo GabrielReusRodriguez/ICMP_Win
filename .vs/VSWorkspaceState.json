@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ICMP_Win",
+    "\\ICMP_Win\\ICMP_Win_Client",
+    "\\ICMP_Win\\Zockete_dll"
   ],
+  "SelectedNode": "\\.gitignore",
   "PreviewInSolutionExplorer": false
 }
