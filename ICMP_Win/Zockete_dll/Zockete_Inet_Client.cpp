@@ -54,3 +54,9 @@ void Zockete_Inet_Client::desconecta() {
 
 }
 
+
+
+void Zockete_Inet_Client::limpiaRecvBuffer() {
+	this->recvBuffer.clear();
+}
+

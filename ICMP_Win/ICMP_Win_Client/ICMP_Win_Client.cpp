@@ -4,16 +4,51 @@
 #include <iostream>
 //#include "../Zockete_dll/Zockete_Client.h"
 #include "Zockete_Inet_Client_ICMP.h"
+#include "ZocketeLibrary.h"
 
 int main(int argc, char* argv[])
 {
     std::cout << "Hello World!\n";
 	Zockete_Inet_Client_ICMP *mySocket = NULL;
 	//Zockete_Client prueba("host",21);
-	
+	std::string host = "";
+	std::string payload = "";
+
+	if (argc < 2) {
+		std::cout << "Faltan argumentos, uso:" << std::endl;
+		std::cout << "ZocketePing  host" << std::endl;
+		return 1;
+	}
+
+	if (argc == 2) {
+		host = argv[1];
+		payload = "ABCDEFGHIJKLMNOPQRSTVWXYZ";
+	}
+
+	if (argc == 3) {
+		host = argv[1];
+		payload = argv[2];
+	}
+
+	if (host.empty() || payload.empty()) {
+		std::cout << "No hemos recibido o host o payload " << std::endl;
+		return 1;
+	}
+
+	std::cout << "Ping a " << host << "Con el payload: " << payload << std::endl;
 	try{
-		mySocket = new Zockete_Inet_Client_ICMP("host");
+		ZocketeLibrary::initLibrary();
+
+		mySocket = new Zockete_Inet_Client_ICMP(host);
+		mySocket->creaSocket();
+		mySocket->conecta();
+		mySocket->envia(payload);
+		mySocket->recibe();
+		mySocket->desconecta();
+		mySocket->cierraSocket();
 		mySocket->about();
+
+		ZocketeLibrary::closeLibrary();
 	}
 	catch (ZocketeException& e) {
 		std::cout << "ERROR EXCEPCION" << std::endl;
