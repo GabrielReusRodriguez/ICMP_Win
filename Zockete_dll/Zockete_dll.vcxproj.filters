@@ -45,6 +45,9 @@
     <ClInclude Include="Zockete_Inet_Client_ICMP.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="ZocketeLibraryDefines.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">

@@ -5,15 +5,24 @@
 //#include "../Zockete_dll/Zockete_Client.h"
 #include "Zockete_Inet_Client_ICMP.h"
 #include "ZocketeLibrary.h"
+#include "ArgsManager.h"
+
+
+//#define DEFAULT_PAYLOAD "ABCDEFGHIJKLMNOPQRSTVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+
+#define DEFAULT_PAYLOAD "ABCDEFGHIJKLMNOPQRSTVWXYZ"
+
 
 int main(int argc, char* argv[])
 {
     std::cout << "Hello World!\n";
 	Zockete_Inet_Client_ICMP *mySocket = NULL;
-	//Zockete_Client prueba("host",21);
+	ArgsManager* args = NULL;
+
 	std::string host = "";
 	std::string payload = "";
 
+	/*
 	if (argc < 2) {
 		std::cout << "Faltan argumentos, uso:" << std::endl;
 		std::cout << "ZocketePing  host" << std::endl;
@@ -29,6 +38,23 @@ int main(int argc, char* argv[])
 		host = argv[1];
 		payload = argv[2];
 	}
+	*/
+
+
+	try {
+		args = new ArgsManager(argc,argv,1);
+		host = args->getDestino();
+		payload = args->getPayload();
+		if (payload.empty()) {
+			payload = DEFAULT_PAYLOAD;
+		}
+		
+	}
+	catch (ArgsException e) {
+		return 1;
+	}
+
+
 
 	if (host.empty() || payload.empty()) {
 		std::cout << "No hemos recibido o host o payload " << std::endl;
@@ -47,6 +73,7 @@ int main(int argc, char* argv[])
 		mySocket->desconecta();
 		mySocket->cierraSocket();
 		mySocket->about();
+		delete mySocket;
 
 		ZocketeLibrary::closeLibrary();
 	}
@@ -54,6 +81,8 @@ int main(int argc, char* argv[])
 		std::cout << "ERROR EXCEPCION" << std::endl;
 	}
 
+	//Liberamos memoria.
+	delete args;
 	std::cout << "Goodbye World!\n";
 }
 

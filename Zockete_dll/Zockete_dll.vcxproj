@@ -161,6 +161,7 @@
     <ClInclude Include="Zockete.h" />
     <ClInclude Include="ZocketeException.h" />
     <ClInclude Include="ZocketeLibrary.h" />
+    <ClInclude Include="ZocketeLibraryDefines.h" />
     <ClInclude Include="Zockete_Inet_Client.h" />
     <ClInclude Include="Zockete_Inet_Client_ICMP.h" />
     <ClInclude Include="Zockete_Inet_Client_Raw.h" />

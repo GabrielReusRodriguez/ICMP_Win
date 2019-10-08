@@ -27,16 +27,30 @@ void Zockete_Inet_Client::about() {
 
 void Zockete_Inet_Client::conecta() {
 
+	/*
 	int iResult = SOCKET_ERROR;
 
-	iResult = connect(this->sd,this->direccionServidor.ai_addr,(int)this->direccionServidor.ai_addrlen);
+	//iResult = connect(this->sd,this->direccionServidor.ai_addr,(int)this->direccionServidor.ai_addrlen);
+	iResult = connect(this->sd, this->direccionServidor.sin_addr, (int)sizeof(this->direccionServidor.sin_addr));
 	if (iResult == SOCKET_ERROR) {
 		closesocket(this->sd);
 		this->sd = INVALID_SOCKET;
+		wprintf(L"send failed with error: %d\n", WSAGetLastError());
 		//Falta el throw
 		return;
 	}
 
+
+	BOOL bOptVal = true;
+	int bOptLen = sizeof(BOOL);
+
+	iResult = setsockopt(this->sd, SOL_SOCKET, SO_BROADCAST, (char*)&bOptVal, bOptLen);
+	if (iResult == SOCKET_ERROR) {
+		wprintf(L"setsockopt for SO_KEEPALIVE failed with error: %u\n", WSAGetLastError());
+	}
+	else
+		wprintf(L"Set SO_KEEPALIVE 2: ON\n");
+		*/
 }
 
 void Zockete_Inet_Client::desconecta() {
@@ -46,6 +60,7 @@ void Zockete_Inet_Client::desconecta() {
 	if (this->sd != INVALID_SOCKET) {
 		iResult = shutdown(this->sd,SD_BOTH);
 		if (iResult == SOCKET_ERROR) {
+			wprintf(L"send failed with error: %d\n", WSAGetLastError());
 			//retornamos error.
 			return;
 		}

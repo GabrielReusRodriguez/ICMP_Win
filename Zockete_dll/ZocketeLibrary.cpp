@@ -18,7 +18,7 @@ ZocketeLibrary::~ZocketeLibrary() {
 void ZocketeLibrary::initLibrary() {
 	
 	if ( !ZocketeLibrary::winsockIniciado ){
-		if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+		if (WSAStartup(MAKEWORD(2, 2), &(ZocketeLibrary::wsaData)) != 0) {
 			//Error al inicializar Winsock
 			ZocketeLibrary::winsockIniciado = false;
 			throw ZocketeException(1, "Error inicializando WinSock");

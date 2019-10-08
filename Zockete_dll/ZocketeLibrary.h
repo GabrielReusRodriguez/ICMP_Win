@@ -1,5 +1,8 @@
 #pragma once
 
+#include "ZocketeLibraryDefines.h"
+
+/*
 #define ZOCKETELIBRARY_EXPORTS 1
 
 #ifdef ZOCKETELIBRARY_EXPORTS
@@ -7,6 +10,7 @@
 #else
 #define ZOCKETELIBRARY_API __declspec(dllimport)
 #endif
+*/
 
 #include<WinSock2.h>
 #include "ZocketeException.h"

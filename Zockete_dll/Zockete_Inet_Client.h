@@ -31,6 +31,7 @@ public:
 protected:
 	
 	struct addrinfo direccionServidor;
+	//struct sockaddr_in direccionServidor;
 	std::vector<std::string> recvBuffer;
 	
 	void limpiaRecvBuffer();

@@ -27,35 +27,44 @@ void Zockete_Inet_Client_ICMP::creaSocket() {
 	int iResult;
 	struct addrinfo queryServidor = { 0 };
 	struct addrinfo *ptr = NULL;
-	//struct addrinfo *resultadoServidor = NULL;
+	struct addrinfo *resultadoServidor = NULL;
 	int connectedSocket = INVALID_SOCKET;
 
-	addrinfo a;
-	PADDRINFOA resultadoServidor = nullptr;
+	//PADDRINFOA resultadoServidor = nullptr;
 	//PCSTR host = this->host.c_str();
 
 	ZeroMemory(&queryServidor, sizeof(queryServidor));
-	//memset(&(this->direccionServidor), 0, sizeof(this->direccionServidor));
+	ZeroMemory(&(this->direccionServidor), sizeof(this->direccionServidor));
 
-	//queryServidor = createAddrInfo(AF_UNSPEC, SOCK_RAW, IPPROTO_ICMP);
+
+	//ZeroMemory(resultadoServidor, sizeof(*resultadoServidor));
+
+	//memset(&(this->direccionServidor), 0, sizeof(this->direccionServidor));
+	
 	queryServidor = createAddrInfo(AF_UNSPEC, SOCK_RAW, IPPROTO_ICMP);
+	//queryServidor = createAddrInfo(AF_INET, SOCK_RAW, IPPROTO_ICMP);
 	iResult = getaddrinfo(this->host.c_str(),nullptr,&queryServidor,&resultadoServidor);
 	//iResult = getaddrinfo("www.google.es", "80", &queryServidor, &resultadoServidor);
 	//iResult = getaddrinfo("www.google.es", "80", &queryServidor, &resultadoServidor);
 	//iResult = getaddrinfo("www.google.es", "80", &queryServidor, &resultadoServidor);
 	
+
+
+
+
 	//iResult = getaddrinfo(host, nullptr, &queryServidor, &resultadoServidor);
 	if (iResult != 0) {
 		//Error => retornamos.
 		WCHAR* mesg = gai_strerror(iResult);
 		return;
 	}
-
+	
 
 	this->direccionServidor = *resultadoServidor;
+	
 	//Probamos diferentes direcciones.
-	//for (ptr = resultadoServidor; ptr != NULL; ptr = ptr->ai_next) {
-	for (ptr = &(this->direccionServidor); ptr != NULL; ptr = ptr->ai_next) {
+	for (ptr = resultadoServidor; ptr != NULL; ptr = ptr->ai_next) {
+	//for (ptr = &(this->direccionServidor); ptr != NULL; ptr = ptr->ai_next) {
 
 		connectedSocket = socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol);
 		if (connectedSocket == INVALID_SOCKET) {
@@ -66,11 +75,29 @@ void Zockete_Inet_Client_ICMP::creaSocket() {
 		}
 		else {
 			this->sd = connectedSocket;
+			//this->direccionServidor = *ptr;
+			//this->direccionServidor = *(ptr->ai_next);
+
+
+
+			BOOL bOptVal = TRUE;
+			int bOptLen = sizeof(BOOL);
+			iResult = setsockopt(connectedSocket, SOL_SOCKET, SO_BROADCAST, (char*)&bOptVal, bOptLen);
+			if (iResult == SOCKET_ERROR) {
+				wprintf(L"setsockopt for SO_KEEPALIVE failed with error: %u\n", WSAGetLastError());
+			}
+			else
+				wprintf(L"Set SO_KEEPALIVE: ON\n");
+
+
+
+
+
 			return;
 		}
 
 	}
-
+	
 	//this->direccionServidor.ai_family = AF_INET;
 	//this->direccionServidor.ai_socktype = SOCK_RAW;
 }
@@ -85,7 +112,10 @@ void Zockete_Inet_Client_ICMP::envia(std::string sendBuffer) {
 	}
 
 	iResult = send(this->sd, sendBuffer.c_str(), int(strlen(sendBuffer.c_str())), 0);
+	//iResult  = sendto(this->sd, sendBuffer.c_str(), strlen(sendBuffer.c_str()), 0,this->direccionServidor.ai_next->ai_addr, 0);
 	if (iResult == SOCKET_ERROR) {
+
+		wprintf(L"send failed with error: %d\n", WSAGetLastError());
 		return;
 	}
 
