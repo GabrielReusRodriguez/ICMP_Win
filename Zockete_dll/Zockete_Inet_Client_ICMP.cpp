@@ -47,6 +47,8 @@ void Zockete_Inet_Client_ICMP::creaSocket() {
 	//iResult = getaddrinfo("www.google.es", "80", &queryServidor, &resultadoServidor);
 	//iResult = getaddrinfo("www.google.es", "80", &queryServidor, &resultadoServidor);
 	//iResult = getaddrinfo("www.google.es", "80", &queryServidor, &resultadoServidor);
+
+	//Rama
 	
 
 
